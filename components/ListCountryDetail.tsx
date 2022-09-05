@@ -41,7 +41,8 @@ const ListCountryDetail = ({ item: country }: ListDetailProps) => (
           </Row>
           <Row>
             Currencies: {
-            country.currencies.getCurrencyField(country.currencies).name}
+            // country.currencies.getCurrencyField(country.currencies).name
+            }
           </Row>
           <Row>
             Languages : {nextKey(country.languages)}
