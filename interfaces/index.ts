@@ -9,6 +9,7 @@
 //   name: string
 // }
 
+
 export type CountryCard = {
   flags: {
     png: string;
@@ -18,7 +19,7 @@ export type CountryCard = {
     common: string;
     official: string;
     nativeName: {
-      country: {
+      [key: string]: {
         official: string;
         common: string;
       }
@@ -30,12 +31,12 @@ export type CountryCard = {
   subregion: string;
   tld: Array<string>;
   currencies: {
-    cur: {
+    [key: string]: {
       name: string;
     }
   };
   languages: {
-  }
+    [key: string]: string }
   borders: Array<string>;
   ccn3: string;
 };

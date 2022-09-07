@@ -18,7 +18,7 @@ const WithStaticProps = ({ items }: Props) => (
       {items?.map((item) => {
         return (
           <div key={item?.ccn3}>
-            <Link href={`/flags/` + item.ccn3}>
+            <Link href={`/countriesStatic/` + item.ccn3}>
               <h2>{item.name.common}</h2>
             </Link>
           </div>

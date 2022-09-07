@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import { Card, Container, Row, Col, Button } from "react-bootstrap";
 
 type Props = {
   children?: ReactNode
@@ -16,25 +17,17 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     </Head>
     <header>
       <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
+        <Row>
+          <Col lg={11}>
+        <h2>Where in the world ?</h2>
+        </Col>
+        <Col lg={1}>
+        <a>Dark Mode</a>
+        </Col>
+        </Row>
       </nav>
     </header>
     {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
   </div>
 )
 

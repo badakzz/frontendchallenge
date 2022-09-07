@@ -1,28 +1,24 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
-import { CountryCard } from '../interfaces'
+import { Country } from "../interfaces";
 
-type Props = {
-  data: CountryCard
-}
+type ListCountryItemProps = {
+  country: Country;
+};
 
-const ListCountryItem = ({ data }: Props) => (
+const ListCountryItem = ({ country }: ListCountryItemProps) => {
+     return (
+<Link href={"/flags/" + country.ccn3}><div className="m-6">
+          <div>
+            <p>
+              Population: {country.population.toLocaleString()} <br />
+              Region: {country.region} <br />
+            </p>
+          </div>
+        </div>
+</Link>  
+     )
+};
 
-    <Link href={'/flags/' + data.ccn3} key={data.ccn3}>
-          <Col className="darkCardRow" key={data.name.official} xs={12} md={2} lg={2}>
-            <Row style={{maxWidth:'100%'}} className="imgContainer">
-              <img className="flagImg" src={data.flags.png}></img>
-            </Row>
-            <div className="darkText">
-              <Row><h5>{data.name.common}</h5></Row>
-              <Row>Population : {data.population}</Row>
-              <Row>Region : {data.region}</Row>
-              <Row>Capital : {data.capital}</Row>
-            </div>
-          </Col>
-          </Link>
-
-)
-
-export default ListCountryItem
+export default ListCountryItem;

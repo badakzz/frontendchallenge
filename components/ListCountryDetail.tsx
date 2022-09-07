@@ -1,90 +1,101 @@
-import * as React from 'react'
+import * as React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
-import { CountryCard } from '../interfaces'
+import { Country } from "../interfaces";
 
 type ListDetailProps = {
-  item: CountryCard
-}
+  item: Country;
+};
 
 const ListCountryDetail = ({ item: country }: ListDetailProps) => (
   <div>
     {console.log(country)}
     <Container fluid>
-    <Row>
-      <Col>
-      <img className="flagImg" src={country.flags.png}></img>
-      </Col>
-      <Col>
-        <Col>
-          <Row>
-            {country.name.common}
+      <Row>
+        <Col xs={6} md={6} lg={6}>
+          <img
+            style={{ width: "65%" }}
+            className="flagImg"
+            src={country.flags.png}
+          ></img>
+        </Col>
+        <Col xs={6} md={6} lg={6}>
+          <Row lg={1}>
+            <h4>{country.name.common}</h4>
           </Row>
-          <Row>
-            {/* Native Name: {nextKey(country.name.nativeName)} */}
+          <Row lg={1}>
+            <Col xs={6} md={6} lg={6}>
+              Native Name: {Object.values(country.name.nativeName)[0].common}
+            </Col>
+            <Col xs={6} md={6} lg={6}>
+              Top Level Domain: {country.tld[0]}
+            </Col>
           </Row>
-          <Row>
-            Population: {country.population}
+          <Row lg={1}>
+            <Col xs={6} md={6} lg={6}>
+              Population: {country.population}
+            </Col>
+            <Col xs={6} md={6} lg={6}>
+              Currencies: {Object.values(country.currencies)[0].name}
+            </Col>
           </Row>
-          <Row>
-            Region: {country.region}
+          <Row lg={1}>
+            <Col xs={6} md={6} lg={6}>
+              Region: {country.region}
+            </Col>
+            <Col xs={6} md={6} lg={6}>
+              Languages : {nextKey(country.languages)}
+            </Col>
           </Row>
-          <Row>
-            Sub Region: {country.subregion}
+          <Row lg={1}>
+            <Col xs={6} md={6} lg={6}>
+              Sub Region: {country.subregion}
+            </Col>
+            <Col xs={6} md={6} lg={6}></Col>
           </Row>
-          <Row>
-            Capital: {country.capital[0]}
+          <Row lg={1}>
+            <Col xs={6} md={6} lg={6}>
+              Capital: {country.capital[0]}
+            </Col>
+            <Col xs={6} md={6} lg={6}></Col>
+          </Row>
+          <Row lg={7}>
+            <Col xs={6} md={6} lg={10} style={{ flexDirection: "column" }}>
+              Borders:{" "}
+              {country.borders.map((item) => {
+                return <Button key={item}>{item}</Button>;
+              })}
+            </Col>
+            <Col xs={6} md={6} lg={2}></Col>
           </Row>
         </Col>
-        <Col>
-          <Row>
-            Top Level Domain: {country.tld[0]}
-          </Row>
-          <Row>
-            Currencies: {
-            // country.currencies.getCurrencyField(country.currencies).name
-            }
-          </Row>
-          <Row>
-            Languages : {nextKey(country.languages)}
-          </Row>
-        </Col>
-        <Row>
-        </Row>
-      </Col>
-    </Row>
-      {country.borders.forEach((item) => {
-        <h6>{item}</h6>
-      })}
+      </Row>
     </Container>
   </div>
-)
+);
 
-function getCurrencyField (object): string {
+function getCurrencyField(object): string {
   let keys = [];
-  for (let key in object) {      
-     if (object.hasOwnProperty(key)) 
-      keys.push(key);
- }
- return keys[0];
+  for (let key in object) {
+    if (object.hasOwnProperty(key)) keys.push(key);
+  }
+  return keys[0];
 }
 
-function nextKey (object) {
+function nextKey(object) {
   let keys = [];
   let fields: string[] = [];
-  for (let key in object) {      
-     if (object.hasOwnProperty(key)) 
-      keys.push(key);
- }
- for (let i=0; i < keys.length; i++) { 
-  fields[i] = object[keys[i]];
-  if (i < keys.length - 1)
-    fields[i] += ', '
-} 
-return (fields);
+  for (let key in object) {
+    if (object.hasOwnProperty(key)) keys.push(key);
+  }
+  for (let i = 0; i < keys.length; i++) {
+    fields[i] = object[keys[i]];
+    if (i < keys.length - 1) fields[i] += ", ";
+  }
+  return fields;
 }
 
 // function getCommon(object, language) {
 //   return object[language].common;
 // }
 
-export default ListCountryDetail
+export default ListCountryDetail;
