@@ -13,19 +13,18 @@ const ListCountryDetail = ({ item: country }: ListDetailProps) => (
     <Container fluid>
       <Row>
         <Col xs={2} md={2} lg={2}>
-        <Link href="/flags">
-      <Button className="backButton">-- Back</Button>
-      </Link>
-      </Col>
-      <Col xs={10} md={10} lg={10}>
-      </Col>
+          <Link href="/flags">
+            <Button className="backButton">-- Back</Button>
+          </Link>
+        </Col>
+        <Col xs={10} md={10} lg={10}></Col>
       </Row>
       <Row>
         <Col xs={6} md={6} lg={6}>
           <img
             style={{ width: "65%" }}
-            className="flagImg"
-            src={country.flags.png}
+            // className="flagImg"
+            src={country.flags.svg}
           ></img>
         </Col>
         <Col xs={6} md={6} lg={6}>
@@ -70,10 +69,12 @@ const ListCountryDetail = ({ item: country }: ListDetailProps) => (
           </Row>
           <Row lg={7}>
             <Col xs={6} md={6} lg={10} style={{ flexDirection: "column" }}>
+              {country.borders && (
+                <>
               Borders:{" "}
               {country.borders.map((item) => {
                 return <Button key={item}>{item}</Button>;
-              })}
+              })}</>)}
             </Col>
             <Col xs={6} md={6} lg={2}></Col>
           </Row>

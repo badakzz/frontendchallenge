@@ -10,7 +10,7 @@
 // }
 
 
-export type CountryCard = {
+export type Country = {
   flags: {
     png: string;
     svg: string;

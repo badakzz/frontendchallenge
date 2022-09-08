@@ -8,8 +8,11 @@ type Props = {
   title?: string
 }
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div>
+const Layout = ({ children, title = 'This is the default title' }: Props) => {
+  const layoutClasses = `headerRow`;
+
+  return (
+  <Container fluid className='px-0'>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -17,9 +20,9 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     </Head>
     <header>
       <nav>
-        <Row className="headerCol">
+        <Row className={layoutClasses} style={{alignItems:'center'}}>
           <Col lg={11}>
-        <h2>Where in the world ?</h2>
+        <h3>Where in the world ?</h3>
         </Col>
         <Col lg={1}>
         <a>Dark Mode</a>
@@ -28,7 +31,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       </nav>
     </header>
     {children}
-  </div>
-)
+  </Container>
+  )
+}
 
 export default Layout
