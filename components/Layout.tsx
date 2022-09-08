@@ -17,7 +17,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     </Head>
     <header>
       <nav>
-        <Row>
+        <Row className="headerCol">
           <Col lg={11}>
         <h2>Where in the world ?</h2>
         </Col>

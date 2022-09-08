@@ -1,9 +1,9 @@
 import React from "react";
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { CountryCard } from '../../interfaces/'
+import { Country } from '../../interfaces/'
 
 
-export default function CountryDetail({ country }: { country: CountryCard }) {
+export default function CountryDetail({ country }: { country: Country }) {
     console.log(country)
   return (
       <p>{country[0].ccn3}</p>
@@ -14,7 +14,7 @@ export default function CountryDetail({ country }: { country: CountryCard }) {
 export const getStaticPaths: GetStaticPaths = async () => {
     // Get the paths we want to pre-render based on users
     const res = await fetch('https://restcountries.com/v3.1/all?fields=name,population,capital,region,flags,ccn3');
-    const data: CountryCard[] = await res.json();
+    const data: Country[] = await res.json();
     // map data to an array of path objects with params (id)
     const paths = data.map(country => {
       return {

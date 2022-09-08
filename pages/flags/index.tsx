@@ -19,14 +19,14 @@ const WithServerSideProps = ({ countries }: Props) => {
   const [filterRegion, setFilterRegion] = useState("");
 
   const filterFunction = ({ name, region }: Country) => {
-    const inRegion = filterRegion
+    const inRegion = filterRegion // test if countries.region froms props includes our filterRegion state (by default true because no filter
+                                  // is an empty string)
       ? region.toLowerCase().includes(filterRegion.toLowerCase())
       : true;
-    const filterSearch = query
+    const filterSearch = query // test if if countries.name.common contains the query typed
       ? name.common.toLowerCase().includes(query.toLowerCase())
       : true;
-
-    return inRegion && filterSearch;
+    return inRegion && filterSearch; // return true if both conditions are true, else return false
   };
 
   return (
@@ -39,6 +39,7 @@ const WithServerSideProps = ({ countries }: Props) => {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search for a country..."
       />
+      {/* we pass to the child a function (state) so that it can update our state. we also pass our state so it can render the button's name */}
       <RegionDropdown
         filterRegion={filterRegion}
         setFilterRegion={setFilterRegion}
@@ -55,7 +56,7 @@ const WithServerSideProps = ({ countries }: Props) => {
                 md={2}
                 lg={2}
               >
-                  <CountryCard country={country} />
+                <CountryCard country={country} />
               </Col>
             ))}
         </Row>

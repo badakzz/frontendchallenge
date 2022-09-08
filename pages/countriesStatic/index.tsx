@@ -1,12 +1,11 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { CountryCard } from '../../interfaces'
+import { Country } from '../../interfaces'
 import Layout from '../../components/Layout'
-import CountryList from '../../components/CountryList'
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 
 type Props = {
-  items: CountryCard[]
+  items: Country[]
 }
 
 const WithStaticProps = ({ items }: Props) => (
@@ -35,7 +34,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(
     "https://restcountries.com/v3.1/all?fields=name,population,capital,region,flags,ccn3"
   );
-  const items: CountryCard[] = await res.json();
+  const items: Country[] = await res.json();
   // console.log(countries)
   return { props: { items } }
 }

@@ -21,7 +21,7 @@ $white: hsl(0, 0%, 100%);
     .flagImg {
       width: 100%;
       height: 100%;
-    //   max-width: 100%;
+      //   max-width: 100%;
       object-fit: cover; /*magic*/
     }
   }
@@ -29,14 +29,28 @@ $white: hsl(0, 0%, 100%);
     padding: 20px;
   }
 }
+/* this hides the value in the drop down list options */
+.hide {
+  display: none;
+}
+
+
+  .headerCol {
+    justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+
+.backButton {
+  background-color: $darkBlue;
+  padding-left: 20%;
+  padding-right: 20%;
+  box-shadow: 0 0 0 3px rgb(0, 0, 0, 10%);
+  border:0;
+}
 
 body {
   // margin:50px;
   background-color: $veryDarkBlue;
   color: $white;
-
-}
-
-.container-fluid {
-    justify-content: center;
 }

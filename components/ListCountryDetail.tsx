@@ -1,6 +1,8 @@
+import next from "next";
 import * as React from "react";
-import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { Country } from "../interfaces";
+import Link from "next/link";
 
 type ListDetailProps = {
   item: Country;
@@ -8,8 +10,16 @@ type ListDetailProps = {
 
 const ListCountryDetail = ({ item: country }: ListDetailProps) => (
   <div>
-    {console.log(country)}
     <Container fluid>
+      <Row>
+        <Col xs={2} md={2} lg={2}>
+        <Link href="/flags">
+      <Button className="backButton">-- Back</Button>
+      </Link>
+      </Col>
+      <Col xs={10} md={10} lg={10}>
+      </Col>
+      </Row>
       <Row>
         <Col xs={6} md={6} lg={6}>
           <img
@@ -72,14 +82,6 @@ const ListCountryDetail = ({ item: country }: ListDetailProps) => (
     </Container>
   </div>
 );
-
-function getCurrencyField(object): string {
-  let keys = [];
-  for (let key in object) {
-    if (object.hasOwnProperty(key)) keys.push(key);
-  }
-  return keys[0];
-}
 
 function nextKey(object) {
   let keys = [];

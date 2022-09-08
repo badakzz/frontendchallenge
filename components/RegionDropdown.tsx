@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 interface RegionDropdownProps {
   filterRegion: string;
@@ -10,43 +11,101 @@ interface DropdownItemProps {
   handleChange: any;
 }
 
-const RegionDropdown = ({ filterRegion, setFilterRegion }: RegionDropdownProps) => {
-  const [showOptions, setShowOptions] = useState(false)
+interface ItemProps {
+  eventKey: string;
+  hidden: boolean;
+  regionName: string;
+  onClick: () => void;
+}
 
-  const handleChange = (region: string) => {
-    setFilterRegion(region)
-    setShowOptions(false)
-  }
+const RegionDropdown = ({
+  filterRegion,
+  setFilterRegion,
+}: RegionDropdownProps) => {
+  const [showOptions, setShowOptions] = useState(false);
+  const [displayd, setDisplayd] = useState("");
+  const regions: string[] = ["Africa", "America", "Asia", "Europe", "Oceania"];
+
+  const handleSelect = (e) => {
+    setFilterRegion(e); // using this parent component state function to update it
+    setShowOptions(false);
+    console.log(e);
+    // console.log(e)
+    // setSelectedOption(e)
+  };
+
+  // const handleClick = (e) => {
+  //   setSelectedOption(e)
+  // }
 
   return (
     <>
-      <button onClick={() => setShowOptions(!showOptions)}>
-        {filterRegion ? filterRegion : "Filter by Region"}
+      <DropdownButton
+        onSelect={handleSelect}
+        title={filterRegion ? filterRegion : "Filter by Region"}
+        onClick={() => setShowOptions(!showOptions)}
+      >
+        {/* onClick we show the dropdown items*/}
         {/* {showOptions ? 
         <ChevronUpIcon className='w-5 h-5'/> :
         <ChevronDownIcon className='w-5 h-5'/>
         } */}
-      </button>
-      {showOptions && 
-        <span>
-          <DropdownItem region="" handleChange={handleChange} />
-          <DropdownItem region="Africa" handleChange={handleChange} />
-          <DropdownItem region="America" handleChange={handleChange} />
-          <DropdownItem region="Asia" handleChange={handleChange} />
-          <DropdownItem region="Europe" handleChange={handleChange} />
-          <DropdownItem region="Oceania" handleChange={handleChange} />
-        </span>
-      }
+        {/* {console.log(selectedOption)} */}
+        {showOptions && (
+          <span>
+            {console.log(displayd)}
+            {console.log(regions)}
+            {
+            // displayd ? (regions.map((t) => (
+            //   <Item
+            //     eventKey={t}
+            //     key={t}
+            //     regionName={t}
+            //     hidden={t === displayd}
+            //     onClick={() => setDisplayd(t)}
+            //   />
+            // ))).push(
+            //   <Item
+            //     eventKey={'yo'}
+            //     key={'yo'}
+            //     regionName={'yo'}
+            //     hidden={'yo' === displayd}
+            //     onClick={() => setDisplayd('yo')}
+            //     />
+            // ) : 
+            (regions.map((t) => (
+              <Item
+                eventKey={t}
+                key={t}
+                regionName={t}
+                hidden={t === displayd}
+                onClick={() => setDisplayd(t)}
+              />
+            )))
+            
+          }             {console.log(regions)}
+
+            {/* <Dropdown.Item className="hide1" eventKey="Africa">Africa</Dropdown.Item>
+          <Dropdown.Item className="hide2" eventKey="America">America</Dropdown.Item>
+          <Dropdown.Item className="hide3" eventKey="Asia">Asia</Dropdown.Item>
+          <Dropdown.Item className="hide4" eventKey="Europe">Europe</Dropdown.Item>
+          <Dropdown.Item className="hide5" eventKey="Oceania">Oceania</Dropdown.Item> */}
+          </span>
+        )}{" "}
+      </DropdownButton>
     </>
-  )
-}
-
-export default RegionDropdown
-
-const DropdownItem = ({ region, handleChange }: DropdownItemProps) => {
+  );
+};
+const Item = ({ eventKey, hidden, regionName, onClick }: ItemProps) => {
   return (
-    <button onClick={() => {handleChange(region)}} className='w-[200px] px-6 hover:font-semibold text-left cursor-pointer'>
-      {region ? region : "No Filter"}
-    </button>
-  )
-}
+    <Dropdown.Item
+      eventKey={eventKey}
+      onClick={onClick}
+      className={hidden ? "hide" : "display"}
+    >
+      {regionName}
+    </Dropdown.Item>
+  );
+};
+
+export default RegionDropdown;

@@ -17,8 +17,6 @@ export default function CountryDetails({ countries }: { countries: Country }) {
     >
       {countries[0] && <ListCountryDetail item={countries[0]} />}
     </Layout>
-      <hr />
-      <p>{countries[0].ccn3}</p>
     </div>
   );
 }
