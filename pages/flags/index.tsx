@@ -41,7 +41,7 @@ const WithServerSideProps = ({ countries }: Props) => {
     <Layout>
       {/* Search Fields */}
       <Row>
-        <Col xs={10} md={6} lg={3}>
+        <Col xs={7} md={6} lg={3}>
           <InputGroup className="inputFilter">
             <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
             <Form.Control

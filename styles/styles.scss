@@ -15,13 +15,12 @@ $white: hsl(0, 0%, 100%);
   margin-left: 50px;
   margin-bottom: 40px;
   border-radius: 5px;
-
+  box-shadow: 0 41px 41px -41px rgb(0, 0, 0, 60%);
   .imgContainer {
-
     max-width: 100% !important;
 
     .flagImg {
-      width: 100% !important; 
+      width: 100% !important;
       height: 100% !important;
       //   max-width: 100%;
     }
@@ -30,26 +29,37 @@ $white: hsl(0, 0%, 100%);
     padding: 20px;
   }
 }
-/* this hides the value in the drop down list options */
-.a { .dropdown-item-display { .dropdown-item
-  &:focus {
-    background-color: $darkBlue;
+
+.a {
+  .dropdown-item-display {
+    .dropdown-item {
+      $color: $white;
+
+      &:focus {
+        background-color: $darkBlue;
+        $color: $white;
+      }
+    }
   }
-}
-}
-
-
-.dropdown-menu{
-  &:focus {
-    background-color: $darkBlue;
-  }
-
 }
 
 .dropdown-item {
   padding-left: 4%;
   background-color: $darkBlue;
-  border:0;
+  border: 0;
+  $color: $white;
+
+  &:focus {
+    background-color: $darkBlue;
+  }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.233);
+    color: $white;
+  }
+}
+
+.dropdown-menu {
+  background-color: $darkBlue;
   &:focus {
     background-color: $darkBlue;
   }
@@ -58,12 +68,26 @@ $white: hsl(0, 0%, 100%);
 .btn-primary {
   background-color: $darkBlue;
   box-shadow: 0 4px 2px -2px rgb(0, 0, 0, 30%);
-  border:0;
+  border: 0;
+  margin-right: 6%;
+  &:focus {
+    background-color: $darkBlue;
+  }
+  &:hover {
+    background-color: $darkBlue;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.082);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .btn-primary {
+    margin-left: 50px;
+  }
 }
 
 .headerRow {
   // justify-content: center;
-  padding-top:25px;
+  padding-top: 25px;
   padding-bottom: 25px;
   padding-left: 9%;
   padding-right: 6%;
@@ -80,8 +104,8 @@ $white: hsl(0, 0%, 100%);
   border: 0;
 }
 
-.inputFilter{
-  margin-left:36%;
+.inputFilter {
+  margin-left: 37%;
   margin-bottom: 50px;
 }
 
@@ -90,7 +114,32 @@ $white: hsl(0, 0%, 100%);
   color: $white;
   border-radius: 5px;
   box-shadow: 0 0 0 3px rgb(0, 0, 0, 10%);
-  border:0;
+  border: 0;
+  &:focus {
+    background-color: $darkBlue;
+    color: $white;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.082);
+  }
+}
+
+.img-shadow {
+  box-shadow: 0 0 0 10px rgb(0, 0, 0, 10%);
+}
+
+.details-container {
+  padding-left: 9%;
+}
+
+.backButton {
+  margin-bottom: 50px;
+}
+
+.details-row {
+  margin-bottom: 15px;
+}
+
+.border-btn {
+  margin-left: 15px;
 }
 
 body {
@@ -99,13 +148,27 @@ body {
   color: $white;
 }
 
+h4 {
+  padding-top: 30px;
+  margin-bottom: 4%;
+}
+
 .row {
-  --bs-gutter-x:0 !important;
+  --bs-gutter-x: 0 !important;
 }
 
 .layoutContainer {
-  
   // margin-top: 25px;
   // margin-bottom: 25px;
   // justify-content: center;
 }
+
+.light {
+  .titlezer {
+    $color: #000000;
+  }
+}
+
+.h3.dark.titlezer {
+    $color: #EEEEEE;
+  }

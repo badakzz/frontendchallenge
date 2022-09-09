@@ -10,18 +10,18 @@ type ListDetailProps = {
 
 const ListCountryDetail = ({ item: country }: ListDetailProps) => (
   <div>
-    <Container fluid>
+    <Container fluid className="details-container">
       <Row>
-        <Col xs={2} md={2} lg={2}>
+        <Col xs={2} md={2} lg={1}>
           <Link href="/flags">
-            <Button className="backButton">-- Back</Button>
+            <Button className="backButton">{"<--"}&nbsp;&nbsp;Back</Button>
           </Link>
         </Col>
-        <Col xs={10} md={10} lg={10}></Col>
+        <Col xs={10} md={10} lg={2}></Col>
       </Row>
       <Row>
         <Col xs={6} md={6} lg={6}>
-          <img
+          <img className="img-shadow"
             style={{ width: "65%" }}
             // className="flagImg"
             src={country.flags.svg}
@@ -31,49 +31,49 @@ const ListCountryDetail = ({ item: country }: ListDetailProps) => (
           <Row lg={1}>
             <h4>{country.name.common}</h4>
           </Row>
-          <Row lg={1}>
+          <Row className="details-row" lg={1}>
             <Col xs={6} md={6} lg={6}>
-              Native Name: {Object.values(country.name.nativeName)[0].common}
+              <b>Native Name:</b> {Object.values(country.name.nativeName)[0].common}
             </Col>
             <Col xs={6} md={6} lg={6}>
-              Top Level Domain: {country.tld[0]}
-            </Col>
-          </Row>
-          <Row lg={1}>
-            <Col xs={6} md={6} lg={6}>
-              Population: {country.population}
-            </Col>
-            <Col xs={6} md={6} lg={6}>
-              Currencies: {Object.values(country.currencies)[0].name}
+            <b>Top Level Domain:</b> {country.tld[0]}
             </Col>
           </Row>
-          <Row lg={1}>
+          <Row className="details-row" lg={1}>
             <Col xs={6} md={6} lg={6}>
-              Region: {country.region}
+            <b>Population:</b> {country.population}
             </Col>
             <Col xs={6} md={6} lg={6}>
-              Languages : {nextKey(country.languages)}
+            <b>Currencies:</b> {Object.values(country.currencies)[0].name}
             </Col>
           </Row>
-          <Row lg={1}>
+          <Row className="details-row" lg={1}>
             <Col xs={6} md={6} lg={6}>
-              Sub Region: {country.subregion}
+            <b>Region:</b> {country.region}
+            </Col>
+            <Col xs={6} md={6} lg={6}>
+            <b>Languages:</b> {nextKey(country.languages)}
+            </Col>
+          </Row>
+          <Row className="details-row" lg={1}>
+            <Col xs={6} md={6} lg={6}>
+            <b>Sub Region:</b> {country.subregion}
             </Col>
             <Col xs={6} md={6} lg={6}></Col>
           </Row>
-          <Row lg={1}>
+          <Row className="details-row" lg={1}>
             <Col xs={6} md={6} lg={6}>
-              Capital: {country.capital[0]}
+            <b>Capital:</b> {country.capital[0]}
             </Col>
             <Col xs={6} md={6} lg={6}></Col>
           </Row>
-          <Row lg={7}>
+          <Row className="details-row" lg={7}>
             <Col xs={6} md={6} lg={10} style={{ flexDirection: "column" }}>
               {country.borders && (
                 <>
-              Borders:{" "}
+              <b>Borders:</b>
               {country.borders.map((item) => {
-                return <Button key={item}>{item}</Button>;
+                return <Button className="border-btn" key={item}>{item}</Button>;
               })}</>)}
             </Col>
             <Col xs={6} md={6} lg={2}></Col>
@@ -88,11 +88,13 @@ function nextKey(object) {
   let keys = [];
   let fields: string[] = [];
   for (let key in object) {
-    if (object.hasOwnProperty(key)) keys.push(key);
+    if (object.hasOwnProperty(key))
+      keys.push(key);
   }
   for (let i = 0; i < keys.length; i++) {
     fields[i] = object[keys[i]];
-    if (i < keys.length - 1) fields[i] += ", ";
+    if (i < keys.length - 1) 
+      fields[i] += ", ";
   }
   return fields;
 }
